@@ -5,31 +5,52 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: BNB
+    name: TetherToken
     network: mainnet
     source:
-      address: "0xB8c77482e45F1F44dE1745F52C74426C631bDD52"
-      abi: BNB
-      startBlock: 23182922
+      address: "0xdAC17F958D2ee523a2206206994597C13D831ec7"
+      abi: TetherToken
+      startBlock: 23183424
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.9
       language: wasm/assemblyscript
       entities:
+        - Issue
+        - Redeem
+        - Deprecate
+        - Params
+        - DestroyedBlackFunds
+        - AddedBlackList
+        - RemovedBlackList
+        - Approval
         - Transfer
-        - Burn
-        - Freeze
-        - Unfreeze
+        - Pause
+        - Unpause
       abis:
-        - name: BNB
-          file: ./abis/BNB.json
+        - name: TetherToken
+          file: ./abis/TetherToken.json
       eventHandlers:
+        - event: Issue(uint256)
+          handler: handleIssue
+        - event: Redeem(uint256)
+          handler: handleRedeem
+        - event: Deprecate(address)
+          handler: handleDeprecate
+        - event: Params(uint256,uint256)
+          handler: handleParams
+        - event: DestroyedBlackFunds(address,uint256)
+          handler: handleDestroyedBlackFunds
+        - event: AddedBlackList(address)
+          handler: handleAddedBlackList
+        - event: RemovedBlackList(address)
+          handler: handleRemovedBlackList
+        - event: Approval(indexed address,indexed address,uint256)
+          handler: handleApproval
         - event: Transfer(indexed address,indexed address,uint256)
           handler: handleTransfer
-        - event: Burn(indexed address,uint256)
-          handler: handleBurn
-        - event: Freeze(indexed address,uint256)
-          handler: handleFreeze
-        - event: Unfreeze(indexed address,uint256)
-          handler: handleUnfreeze
-      file: ./src/bnb.ts
+        - event: Pause()
+          handler: handlePause
+        - event: Unpause()
+          handler: handleUnpause
+      file: ./src/tether-token.ts
