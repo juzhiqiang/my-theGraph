@@ -1,5 +1,5 @@
 .sepolia-explorer {
-  padding: 20px;
+  padding: 16px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   width: 100vw;
   height: 100vh;
@@ -9,20 +9,22 @@
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  gap: 16px;
 }
 
 .explorer-header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 24px;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 0;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
 }
 
 .explorer-header h2 {
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-size: 15px;
   font-weight: 700;
   color: #2d3748;
@@ -34,19 +36,21 @@
 
 .address-input {
   display: flex;
-  gap: 12px;
+  gap: 10px;
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .address-input-field {
   flex: 1;
-  padding: 12px 16px;
+  padding: 10px 14px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: 8px;
   font-size: 14px;
   background: rgba(255, 255, 255, 0.9);
   transition: all 0.3s;
   font-family: 'Monaco', 'Courier New', monospace;
+  min-width: 280px;
 }
 
 .address-input-field:focus {
@@ -56,7 +60,7 @@
 }
 
 .fetch-btn {
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
   border: none;
@@ -65,6 +69,8 @@
   cursor: pointer;
   transition: all 0.3s;
   white-space: nowrap;
+  font-size: 14px;
+  min-height: 40px;
 }
 
 .fetch-btn:hover:not(:disabled) {
@@ -78,7 +84,7 @@
 }
 
 .test-btn {
-  padding: 12px 20px;
+  padding: 10px 18px;
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
@@ -88,6 +94,7 @@
   transition: all 0.3s;
   white-space: nowrap;
   font-size: 14px;
+  min-height: 40px;
 }
 
 .test-btn:hover {
@@ -96,7 +103,7 @@
 }
 
 .rpc-btn {
-  padding: 12px 18px;
+  padding: 10px 16px;
   background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
   color: white;
   border: none;
@@ -106,6 +113,7 @@
   transition: all 0.3s;
   white-space: nowrap;
   font-size: 14px;
+  min-height: 40px;
 }
 
 .rpc-btn:hover {
@@ -353,23 +361,29 @@
 .explorer-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 24px;
+  gap: 20px;
+  flex: 1;
+  min-height: 0;
 }
 
 .transactions-panel {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 24px;
+  border-radius: 14px;
+  padding: 20px;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .transactions-panel h3 {
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-size: 15px;
   color: #2d3748;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .transactions-list {
@@ -482,22 +496,25 @@
 }
 
 .transaction-details h3 {
-  margin: 0 0 20px 0;
+  margin: 0 0 16px 0;
   font-size: 15px;
   color: #2d3748;
   font-weight: 600;
+  flex-shrink: 0;
 }
 
 .details-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
+  flex: 1;
+  min-height: 0;
 }
 
 .detail-section {
   background: rgba(248, 250, 252, 0.6);
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 14px;
 }
 
 .detail-section h4 {
@@ -511,9 +528,9 @@
 
 .detail-item {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 12px;
-  margin-bottom: 12px;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
   align-items: start;
 }
 
@@ -779,58 +796,55 @@
 /* 1920*1080 优化样式 */
 @media (min-width: 1920px) {
   .sepolia-explorer {
-    padding: 20px;
-    width: 100vw;
-    height: 100vh;
+    padding: 20px 24px;
+    gap: 20px;
   }
 
   .explorer-header {
-    padding: 32px;
-    margin-bottom: 32px;
+    padding: 24px 28px;
   }
 
   .explorer-header h2 {
     font-size: 15px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .address-input {
-    gap: 16px;
+    gap: 14px;
   }
 
   .address-input-field {
-    padding: 16px 20px;
+    padding: 12px 16px;
     font-size: 14px;
+    min-width: 350px;
   }
 
   .fetch-btn, .test-btn, .rpc-btn {
-    padding: 16px 28px;
+    padding: 12px 24px;
     font-size: 14px;
+    min-height: 44px;
   }
 
   .explorer-content {
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
+    gap: 24px;
   }
 
   .transactions-panel, .transaction-details {
-    padding: 32px;
+    padding: 24px;
   }
 
   .transactions-panel h3, .transaction-details h3 {
     font-size: 15px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
   }
 
   .transactions-list {
-    gap: 16px;
-    flex: 1;
-    max-height: calc(100vh - 250px);
+    gap: 14px;
   }
 
   .transaction-item {
-    padding: 20px;
-    gap: 20px;
+    padding: 16px;
+    gap: 16px;
   }
 
   .transaction-hash {
@@ -846,9 +860,9 @@
   }
 
   .detail-item {
-    grid-template-columns: 140px 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
+    grid-template-columns: 130px 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
   }
 
   .detail-item .label {
@@ -860,9 +874,9 @@
   }
 
   .wallet-details {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 18px;
+    padding: 18px;
   }
 
   .wallet-item .value {
@@ -871,27 +885,27 @@
 
   .wallet-item .value.mono {
     font-size: 12px;
-    padding: 8px 10px;
+    padding: 6px 8px;
   }
 
   .decrypt-input-section {
-    padding: 24px;
+    padding: 20px;
   }
 
   .decrypt-input-field,
   .decrypt-output-field {
-    padding: 16px;
+    padding: 12px 14px;
     font-size: 14px;
   }
 
   .decrypt-btn {
-    padding: 16px 32px;
+    padding: 12px 24px;
     font-size: 14px;
   }
 
   .etherscan-link {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 10px 16px;
+    font-size: 12px;
   }
 }
 
