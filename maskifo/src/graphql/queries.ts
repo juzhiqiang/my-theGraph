@@ -1,48 +1,70 @@
 import { gql } from '@apollo/client';
 
-export const GET_TOKEN_DATA = gql`
-  query GetTokenData($tokenAddress: String!) {
-    token(id: $tokenAddress) {
+export const GET_TRANSFERS = gql`
+  query GetTransfers($first: Int = 10) {
+    transfers(
+      first: $first
+      orderBy: blockTimestamp
+      orderDirection: desc
+    ) {
       id
-      name
-      symbol
-      decimals
-      totalSupply
-      txCount
-      volume
-      volumeUSD
-      totalValueLocked
-      totalValueLockedUSD
-      tokenDayData(first: 7, orderBy: date, orderDirection: desc) {
-        date
-        volume
-        volumeUSD
-        totalValueLocked
-        totalValueLockedUSD
-        priceUSD
-      }
+      from
+      to
+      value
+      blockNumber
+      blockTimestamp
+      transactionHash
     }
   }
 `;
 
-export const GET_TOKEN_TRANSFERS = gql`
-  query GetTokenTransfers($tokenAddress: String!, $first: Int = 10) {
-    transfers: mints(
+export const GET_BURNS = gql`
+  query GetBurns($first: Int = 10) {
+    burns(
       first: $first
-      orderBy: timestamp
+      orderBy: blockTimestamp
       orderDirection: desc
-      where: { token: $tokenAddress }
     ) {
       id
-      timestamp
-      token {
-        symbol
-      }
-      amount
-      amountUSD
-      transaction {
-        id
-      }
+      from
+      value
+      blockNumber
+      blockTimestamp
+      transactionHash
+    }
+  }
+`;
+
+export const GET_FREEZES = gql`
+  query GetFreezes($first: Int = 10) {
+    freezes(
+      first: $first
+      orderBy: blockTimestamp
+      orderDirection: desc
+    ) {
+      id
+      from
+      value
+      blockNumber
+      blockTimestamp
+      transactionHash
+    }
+  }
+`;
+
+export const GET_UNFREEZES = gql`
+  query GetUnfreezes($first: Int = 10) {
+    unfreezes(
+      first: $first
+      orderBy: blockTimestamp
+      orderDirection: desc
+    ) {
+      id
+      from
+      value
+      blockNumber
+      blockTimestamp
+      transactionHash
     }
   }
 `;
